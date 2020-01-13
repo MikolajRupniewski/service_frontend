@@ -1,0 +1,154 @@
+<div class="row col-md-6">
+  <div class="row">
+      <h1 class="text-center">Sign Up</h1>
+  </div>
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #postForm="ngForm" (ngSubmit)="onCreateUser(postForm.value)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          required
+          ngModel
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          required
+          ngModel
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          required
+          ngModel
+          name="password"
+        />
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!postForm.valid"
+      >
+        Create User
+      </button>
+    </form>
+    <hr>
+    <div class="row">
+        <div *ngIf="accountCreated" class="alert alert-success box-msg" role="alert">
+          <strong>User Created! </strong> Now please confirm your email.
+        </div>
+        <div *ngIf="accountNotCreated" class="alert alert-danger box-msg" role="alert">
+            <strong>User Not created! </strong> Email or username is already taken.
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row col-md-6">
+  <div class="row">
+      <h1 class="text-center">Sign In</h1>
+  </div>
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #postForm2="ngForm" (ngSubmit)="onSignIn(postForm2.value)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          required
+          ngModel
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          required
+          ngModel
+          name="password"
+        />
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!postForm2.valid">
+        Sign In
+      </button>
+
+    </form>
+    <hr>
+    <div class="row">
+      <div *ngIf="wrongPassword" class="alert alert-danger box-msg" role="alert">
+          <strong>Wrong credentials </strong> Username or password is not correct.
+      </div>
+    </div>
+    <div class="row">
+        <div *ngIf="emailNotConfirmed" class="alert alert-danger box-msg" role="alert">
+            <strong>Email not confirmed </strong> Confirm your email first.
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row col-md-12">
+    <button
+    class="btn btn-primary pull-right"
+    type="submit"
+    (click)="restorePassword()">
+    Restore Password
+  </button>
+
+  <div [hidden] = 'isRestoreHidden' class="row">
+      <h1 class="text-center">Restore Password</h1>
+      <form #postForm3="ngForm" (ngSubmit)="onPasswordReset(postForm3.value)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              required
+              ngModel
+              name="email"
+            />
+          </div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!postForm3.valid">
+            Restore Password
+          </button>
+        </form>
+        <hr>
+        <div class="row">
+          <div *ngIf="newPasswordSend" class="alert alert-success box-msg" role="alert">
+              <strong>New password has been created </strong> Check your mailbox
+          </div>
+          <div *ngIf="newPasswordNotSend" class="alert alert-danger box-msg" role="alert">
+            <strong>New password not created </strong> Email does not exists.
+          </div>
+        </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,23 @@
+<app-header-admin></app-header-admin>
+<div class="row">
+    <div class="row">
+        <h1 class="text-center">Add new Category</h1>
+        <form #postForm="ngForm" (ngSubmit)="addCategory(postForm.value)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" required ngModel name="name"/>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
+              Add Category
+            </button>
+          </form>
+          <hr>
+    </div>
+    <h3 class="text-center">Categories</h3>
+    <hr>
+    <div *ngFor="let category of categories; let index=index">
+        <div class="form-group row col-md-3">
+            <h3 class="text-center">{{ category.name }}</h3> <button (click)="deleteCategory(index)" class="btn btn-primary center-block">Remove</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+<app-header></app-header>
+
+<div class="row">
+
+  <div *ngIf="shopNotFound" class="alert alert-danger box-msg" role="alert">
+    <strong>You don't have shop </strong> Create one.
+  </div>
+
+
+    <form [formGroup]="shopForm" (ngSubmit)="onSubmit()">
+
+      <div class="card m-3">
+          <h1 class="text-center">Manage Your Shop</h1>
+
+          <div class="card-body">
+              <div class="form-row">
+                  <div class="form-group">
+                    <label>Name Of The Shop</label>
+                    <input type="text" formControlName="name" class="form-control" placeholder="Select name of the shop"/>
+                  </div>
+              </div>
+          </div>
+
+          <div class="card-body">
+              <div class="form-row">
+                  <div class="form-group">
+                    <label>Maximum Distance</label>
+                    <input type="number" formControlName="maxDistance" class="form-control" placeholder="Select maximum distance in km."/>
+                  </div>
+              </div>
+          </div>
+
+          <div class="card-body">
+            <div class="form-row">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select formControlName="category" class="form-control">
+                    <option value=""></option>
+                    <option *ngFor="let i of categories">{{i.name}}</option>
+                </select>
+                </div>
+            </div>
+          </div>
+
+        <div class="list-group-item">
+          <h3 class="text-center">Shop's Location</h3>
+          <div formGroupName="geoLocation" class="form-row">
+            <div class="form-group col-6">
+                <label>Longitude</label>
+                <input type="number" formControlName="longitude" class="form-control" placeholder="Select Longitude (Eg: 95.0123)"/>
+            </div>
+            <div class="form-group col-6">
+                <label>Latitude</label>
+                <input type="number" formControlName="latitude" class="form-control" placeholder="Select Latitude (Eg: 95.0123)"/>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div *ngFor="let service of s.controls; let i = index" class="list-group list-group-flush">
+            <div class="list-group-item">
+                <h5 class="card-title">Service {{i + 1}}</h5>
+                <div [formGroup]="service" class="form-row">
+                    <div class="form-group col-6">
+                        <label>Name</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Select Service Name, (Eg: Man's haircut)"/>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Duration</label>
+                        <input type="number" formControlName="durationStr" class="form-control" placeholder="Select Duration (in minutes)"/>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Price</label>
+                      <input type="number" formControlName="price" class="form-control" placeholder="Select Price for Service"/>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row text-center">
+            <button class="btn btn-primary" type="button" (click)="onChangeServices()">Add Service</button>
+        </div>
+        <br>
+        <div class="list-group-item">
+            <h3 class="text-center">Shop's Pictures</h3>
+            <div formArrayName="pictures">
+                <div *ngFor="let address of pictures.controls; let i=index" class="list-group list-group-flush">
+                    <input type="url" [formControlName]="i" class="form-control" placeholder="Insert picture's url"/>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row text-center">
+            <button class="btn btn-primary" type="button" (click)="addPicture()">Add Picture</button>
+        </div>
+        <br>
+
+        <div class="card-body">
+          <div class="form-row">
+              <div class="form-group">
+                <label>Service Place</label>
+                <select formControlName="servicePlace" class="form-control">
+                  <option value=""></option>
+                  <option *ngFor="let type of servicePlace.values();">{{type}}</option>
+              </select>
+              </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="card-body">
+          <div class="form-row">
+              <div class="form-group">
+                <label>Number of Employees</label>
+                <select formControlName="employees" class="form-control" (change)="onChangeEmployees($event)">
+                  <option value=""></option>
+                  <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                </select>
+              </div>
+          </div>
+        </div>
+
+        <div *ngFor="let employees of o.controls; let i = index" class="list-group list-group-flush col-md-12">
+          <div class="list-group-item col-md-12">
+              <h5 class="card-title">Employee {{i + 1}}</h5>
+              <div [formGroup]="employees" class="form-row col-md-12">
+                <div formGroupName="monday">
+                  <div class="form-group col-md-4">
+                      <label>Monday</label>
+                      <input type="text" formControlName="open" class="form-control"/>
+                      <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="tuesday">
+                  <div class="form-group col-md-4" >
+                    <label>Tuesday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="wednesday">
+                  <div class="form-group col-md-4">
+                    <label>Wednesday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="thursday">
+                  <div class="form-group col-md-4">
+                    <label>Thursday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="friday">
+                  <div class="form-group col-md-4">
+                    <label>Friday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="saturday">
+                  <div class="form-group col-md-4">
+                    <label>Saturday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+                <div formGroupName="sunday">
+                  <div class="form-group col-md-4">
+                    <label>Sunday</label>
+                    <input type="text" formControlName="open" class="form-control"/>
+                    <input type="text" formControlName="close" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+
+        <div class="row text-center" >
+            <button class="btn btn-primary" style="margin-right: 10px;" type="submit">Submit</button>
+            <button class="btn btn-secondary" style="margin-right: 10px;" type="reset" (click)="onReset()">Reset</button>
+            <button class="btn btn-secondary" type="button" (click)="onClear()">Clear</button>
+        </div>
+
+        <div class="row" style="margin-bottom: 100px;">
+            <div *ngIf="shopUpdated" class="alert alert-success box-msg" role="alert">
+                <strong>Shop has been updated </strong>
+            </div>
+            <div *ngIf="shopNotUpdated" class="alert alert-danger box-msg" role="alert">
+              <strong>Shop has not been updated </strong>
+            </div>
+            <div *ngIf="formNotValid" class="alert alert-danger box-msg" role="alert">
+                <strong>Form is not valid </strong>
+              </div>
+          </div>
+</div>
+

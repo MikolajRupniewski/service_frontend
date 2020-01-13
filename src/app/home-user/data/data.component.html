@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<div class="row">
+    <h1 class="text-center">Update Personal Information</h1>
+    <form #postForm="ngForm" (ngSubmit)="updateUserData(postForm.value)">
+        <input [(ngModel)]="userToChange.id" type="hidden" id="id" ngModel name="id"/>
+        <input [(ngModel)]="userToChange.enabled" type="hidden" id="enabled" ngModel name="enabled"/>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input [(ngModel)]="userToChange.firstName" type="text" class="form-control" id="firstName" ngModel name="firstName"/>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input [(ngModel)]="userToChange.lastName" type="text" class="form-control" id="lastName" ngModel name="lastName"/>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input [(ngModel)]="userToChange.phoneNumber" type="tel" class="form-control" id="phoneNumber" ngModel name="phoneNumber"/>
+        </div>
+        <div class="form-group">
+          <label for="zipCode">Zip Code</label>
+          <input [(ngModel)]="userToChange.zipCode" type="text" class="form-control" id="zipCode" ngModel name="zipCode"/>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input [(ngModel)]="userToChange.city" type="text" class="form-control" id="city" ngModel name="city"/>
+        </div>
+        <div class="form-group">
+          <label for="streetName">Street Name</label>
+          <input [(ngModel)]="userToChange.streetName" type="text" class="form-control" id="streetName" ngModel name="streetName"/>
+        </div>
+        <div class="form-group">
+          <label for="houseNumber">House Number</label>
+          <input [(ngModel)]="userToChange.houseNumber" type="text" class="form-control" id="houseNumber" ngModel name="houseNumber"/>
+        </div>
+        <div class="form-group">
+          <label for="apartmentNumber">Apartment Number</label>
+          <input [(ngModel)]="userToChange.apartmentNumber" type="text" class="form-control" id="apartmentNumber" ngModel name="apartmentNumber"/>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid">
+          Update User Data
+        </button>
+      </form>
+      <hr>
+      <div class="row">
+      <div *ngIf="userUpdated" class="alert alert-success box-msg" role="alert">
+          <strong>User Data Updated </strong> Your data has been updated.
+        </div>
+        <div *ngIf="userNotUpdated" class="alert alert-danger box-msg" role="alert">
+          <strong>User Data Not Updated </strong> There was some issue with updating your data.
+        </div>
+      </div>
+</div>

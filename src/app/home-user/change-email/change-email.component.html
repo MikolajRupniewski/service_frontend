@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="row col-md-12">
+    <h1 class="text-center">Change Email</h1>
+    <form #postForm="ngForm" (ngSubmit)="onEmailChanged(postForm.value)">
+        <div class="form-group">
+          <label for="current_email">Current Email</label>
+          <input type="email" class="form-control" id="current_email" required ngModel name="current_email" />
+        </div>
+        <div class="form-group">
+            <label for="firstEmail">New Email</label>
+            <input type="ema" class="form-control" id="firstEmail" [(ngModel)]="firstEmail" required ngModel name="firstEmail" />
+        </div>
+        <div class="form-group">
+            <label for="secondEmail">Confirm New Email</label>
+            <input type="email" class="form-control" id="secondEmail" name="secondEmail" required [ngModel]="secondEmail" (ngModelChange)="checkSame($event)">
+        </div>
+        <div *ngIf="EmailNotMatch" class="alert alert-warning box-msg" role="alert">
+            <strong>Email does not match </strong>
+        </div>
+        <button  class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
+          Change Email
+        </button>
+      </form>
+      <div *ngIf="EmailUpdated" class="alert alert-success box-msg" role="alert">
+          <strong>New email has been created. </strong>
+        </div>
+        <div *ngIf="EmailNotUpdated" class="alert alert-danger box-msg" role="alert">
+          <strong>New email not created. </strong> Old email does not match
+        </div>
+</div>
