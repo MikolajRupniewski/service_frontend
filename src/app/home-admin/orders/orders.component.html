@@ -1,0 +1,10 @@
+<app-header-admin></app-header-admin>
+<div class="row">
+    <h3 class="text-center">Orders' comments</h3>
+    <hr>
+    <div *ngFor="let order of orders; let index=index">
+        <div class="form-group row col-md-3">
+            <h3 class="text-center">{{ order.id + ": " + order.comment }}</h3> <button (click)="deleteComment(index)" class="btn btn-primary center-block">Remove</button>
+        </div>
+    </div>
+</div>

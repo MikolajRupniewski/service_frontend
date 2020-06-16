@@ -5,6 +5,7 @@ import { ServicePlace } from './ServicePlace';
 import { Service } from './service.model';
 import { Day } from './day.model';
 import { Employee } from './employee.model';
+import { Order } from './order.model';
 
 export interface Shop {
   id: number;
@@ -17,4 +18,5 @@ export interface Shop {
   services: Service[];
   maxDistance: number;
   employees: Employee[];
+  orders: Order[];
 }

@@ -137,7 +137,7 @@ export class AddShopComponent implements OnInit {
         for (let i = 0; i < this.user.shop.pictures.length  - 1; i++) {
           this.addPicture();
         }
-        console.log(this.user.shop.employees.length)
+        console.log(this.user.shop.employees.length);
         for (let i = 0; i < this.user.shop.employees.length; i++) {
           console.log(i);
           this.addEmployee();

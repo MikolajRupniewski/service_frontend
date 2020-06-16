@@ -11,6 +11,7 @@ import { AddShopComponent } from './home-user/add-shop/add-shop.component';
 import { UsersComponent } from './home-admin/users/users.component';
 import { CategoriesComponent } from './home-admin/categories/categories.component';
 import { ShopsComponent } from './home-admin/shops/shops.component';
+import { OrdersComponent } from './home-admin/orders/orders.component';
 
 
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'home-admin/users', component: UsersComponent},
   { path: 'home-admin/categories', component: CategoriesComponent},
   { path: 'home-admin/shops', component: ShopsComponent},
+  { path: 'home-admin/orders', component: OrdersComponent},
   { path: '', component: AuthenticationComponent }
 ];
 

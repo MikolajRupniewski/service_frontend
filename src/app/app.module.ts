@@ -20,6 +20,7 @@ import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { UsersComponent } from './home-admin/users/users.component';
 import { CategoriesComponent } from './home-admin/categories/categories.component';
 import { ShopsComponent } from './home-admin/shops/shops.component';
+import { OrdersComponent } from './home-admin/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ShopsComponent } from './home-admin/shops/shops.component';
     HeaderAdminComponent,
     UsersComponent,
     CategoriesComponent,
-    ShopsComponent
+    ShopsComponent,
+    OrdersComponent
   ],
   imports: [
     NgMultiSelectDropDownModule.forRoot(),
